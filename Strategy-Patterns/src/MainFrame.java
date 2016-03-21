@@ -2,23 +2,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Vector;
 
 /**
  * Created by SunnyZheng on 3/20/16.
  */
 public class MainFrame extends JFrame{
+
     private JLabel labelSelect;
     private JLabel labelNumber;
-    private JLabel labelResult;
-    private String str = "";//for storing the results
 
     private JTextArea textResult;
-
-
 
     private JComboBox comboBox;
     private Vector<String> list = new Vector<String>();
@@ -35,8 +33,12 @@ public class MainFrame extends JFrame{
 
         labelSelect = new JLabel("请选择打印机:");
         add(labelSelect);
+        try{
+            setHashMapAndList(hmap, list);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-        setHashMapAndList(hmap, list);
         comboBox = new JComboBox(list);
         add(comboBox);
 
@@ -77,8 +79,6 @@ public class MainFrame extends JFrame{
 
             printer.quantity = Integer.valueOf(textNumber.getText());
 
-            str = String.format("打折前价格为: %.2f, 打折后价格为: %.2f",
-                     printer.originalPrice, printer.getRealPrice());
             textResult.setText(printer.getMessage(printer.printerName, printer.discountWay));
         }
     }
@@ -86,15 +86,33 @@ public class MainFrame extends JFrame{
         new MainFrame();
     }
     public static void setHashMapAndList(HashMap<String, String> h, Vector<String> v){
-        //
-        h.put("佳能打印机", "CanonPrinter");
-        h.put("爱普生打印机", "EpsonPrinter");
-        h.put("惠普打印机", "HPPrinter");
-        h.put("三星打印机", "SamsungPrinter");
+//        //
+//        h.put("佳能打印机", "CanonPrinter");
+//        h.put("爱普生打印机", "EpsonPrinter");
+//        h.put("惠普打印机", "HPPrinter");
+//        h.put("三星打印机", "SamsungPrinter");
+//
+//        //handle comboBox's list
+//        for(HashMap.Entry<String, String> entry: h.entrySet()){
+//            v.add(entry.getKey());
+//        }
+        try{
+            FileReader fr = new FileReader("config.txt");
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            while(true){
+                line = br.readLine();
 
-        //handle comboBox's list
-        for(HashMap.Entry<String, String> entry: h.entrySet()){
-            v.add(entry.getKey());
+                String[] sPrinter = line.split(" ");
+                v.add(sPrinter[0]);
+                h.put(sPrinter[0], sPrinter[1]);
+                if(line == null)
+                    break;
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }catch (NullPointerException e){
+            e.printStackTrace();
         }
     }
 }

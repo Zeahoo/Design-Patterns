@@ -12,9 +12,9 @@ public abstract class Printer {
     }
     public  String getMessage(String printerName, String discountWay){
         return String.format("你购买的是: %s\n" +
-                        "原价: %.2f, 购买数量: %d\n" +
+                        "原价: %.2f 元, 购买数量: %d 台\n" +
                         "折扣方式为: %s\n" +
-                        "最终总价为: %.2f\n",
+                        "最终总价为: %.2f 元\n",
                 printerName, originalPrice, quantity,
                 discountWay, discountMethod.discount(originalPrice,quantity));
     }

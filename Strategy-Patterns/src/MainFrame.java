@@ -97,17 +97,18 @@ public class MainFrame extends JFrame{
 //            v.add(entry.getKey());
 //        }
         try{
+
             FileReader fr = new FileReader("config.txt");
             BufferedReader br = new BufferedReader(fr);
             String line;
             while(true){
                 line = br.readLine();
-
+                if(line == null)
+                    break;
                 String[] sPrinter = line.split(" ");
                 v.add(sPrinter[0]);
                 h.put(sPrinter[0], sPrinter[1]);
-                if(line == null)
-                    break;
+
             }
         }catch (IOException e){
             e.printStackTrace();

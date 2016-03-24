@@ -1,4 +1,3 @@
-import javax.print.attribute.standard.PrinterName;
 
 /**
  * Created by SunnyZheng on 3/20/16.

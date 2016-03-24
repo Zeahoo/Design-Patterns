@@ -17,6 +17,7 @@ public abstract class Printer {
                         "最终总价为: %.2f 元\n",
                 printerName, originalPrice, quantity,
                 discountWay, discountMethod.discount(originalPrice,quantity));
+
     }
     public abstract double getRealPrice();
 }

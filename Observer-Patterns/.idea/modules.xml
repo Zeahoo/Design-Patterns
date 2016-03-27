@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Strategy-Patterns.iml" filepath="$PROJECT_DIR$/Strategy-Patterns.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Observer-Patterns.iml" filepath="$PROJECT_DIR$/Observer-Patterns.iml" />
     </modules>
   </component>
 </project>

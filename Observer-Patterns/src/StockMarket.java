@@ -5,6 +5,8 @@ import java.util.ArrayList;
  */
 public class StockMarket implements Subject {
     private ArrayList observers;
+    private double initValue;
+    private double[] data;
     public StockMarket(){
         observers = new ArrayList();
     }
@@ -24,7 +26,12 @@ public class StockMarket implements Subject {
     public void notifyObservers() {
         for(int i = 0; i < observers.size(); i++){
             Observer observer = (Observer) observers.get(i);
-            observer.update();
+            observer.update(data);
         }
+    }
+
+    public void changed(double[] data){
+        this.data = data;
+        notifyObservers();
     }
 }

@@ -36,7 +36,7 @@ public class TimesequenceChart extends JFrame implements ActionListener {
         this.setTitle("中国联通 4月16日 股票 分时图");
         this.createUI();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setBounds(100, 100, 900, 600);
+        this.setBounds(100, 100, 600, 400);
         this.setVisible(true);
         this.dynamicRun();
     }
@@ -48,7 +48,7 @@ public class TimesequenceChart extends JFrame implements ActionListener {
             Day d = new Day(16, 4, 2016);
             this.series.add(new Hour(i, d), data[i]);
             try {
-                Thread.currentThread().sleep(1000);
+                Thread.currentThread().sleep(800);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
